@@ -1,3 +1,5 @@
+import java.text.NumberFormat;
+
 public class Main {
     public static void main(String[] args) {
         task1();
@@ -37,53 +39,57 @@ public class Main {
 
     public static void task3 () {
         System.out.println("Задача3");
-        int sum = 12_000_000;
+        int population = 12_000_000;
         int year = 1;
-        int peoplePerYear =108000;
+        int birthPerYear = 17;
+        int deathPerYear = 8;
         while(year<=10) {
-            sum = sum + peoplePerYear;
-        System.out.println("Год "+year+" ,численность населения составляет "+sum+".");
+            population = population + (birthPerYear - deathPerYear)*population/1000;
+        System.out.println("Год "+year+" ,численность населения составляет "+population+".");
         year++;
-            System.out.println(sum);
+            System.out.println(population);
         }
 
     }
 
         public static void task4 () {
         System.out.println("Задача4");
-        int sum =15000;
+        double sum =15000;
         int total = 12_000_000;
-        int percentPerMonth = 1050;
+        double percentPerMonth = 0.07;
         int month = 1;
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
         while(sum <= total) {
-            sum = sum + percentPerMonth;
-            System.out.println("Месяц "+month+" ,сумма накопления равна "+sum);
+            sum = sum*(1+percentPerMonth);
+            System.out.println("Месяц "+month+" ,сумма накопления равна "+ numberFormat.format(sum));
             month++;
         }
     }
 
     public static void task5 () {
         System.out.println("Задача5");
-        int sum =15000;
+        double sum =15000;
         int total = 12_000_000;
-        int percentPerMonth = 1050;
-        int month = 6;
-        while (sum <= total) {
-            sum = sum + 6*percentPerMonth;
-            System.out.println("Месяц "+month+" ,сумма накопления равна "+sum);
-            month = month + 6; }
-
+        double percentPerMonth = 0.07;
+        int month = 1;
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        while(sum <= total) {
+            sum = sum*(1+percentPerMonth);
+            if(month%6==0) {
+            System.out.println("Месяц "+month+" ,сумма накопления равна "+ numberFormat.format(sum));}
+            month++;}
     }
 
     public static void task6 () {
         System.out.println("Задача6");
-        int sum = 6300;
-        int halfYear = 0;
-        int percentPerHalfYear = 6300;
-        while (halfYear < 18) {
-            halfYear++;
-            System.out.println("За полугодие "+halfYear+" накопление состовляет "+sum+" рублей.");
-            sum = sum + percentPerHalfYear;
+        double sum = 15000;
+        int months  = 12 * 9;
+        double percentPerMonth = 0.07;
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        for (int month=1; month <= months; month++) {
+            sum = sum * (1 + percentPerMonth);
+            if(month%6==0) {
+                System.out.println("Месяц "+month+" ,сумма накопления равна "+ numberFormat.format(sum));}
         }
     }
 
